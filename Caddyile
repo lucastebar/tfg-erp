@@ -2,6 +2,6 @@
     admin off
 }
 :{$PORT} {
-    root * /
+    root * .
     php_server
 }
