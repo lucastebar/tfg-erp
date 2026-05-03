@@ -1,9 +1,19 @@
-<?php ob_start(); ?>
 <div class="dashboard">
     <div class="welcome-section">
-        <h1>Bienvenido, <?= htmlspecialchars($_SESSION['usuario_nombre']) ?></h1>
-        <p class="welcome-subtitle">¿Qué deseas gestionar hoy?</p>
+        <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></h1>
+        <p class="welcome-subtitle">Qué deseas gestionar hoy?</p>
     </div>
+    
+    <?php if (!empty($productosBajoStock)): ?>
+    <div class="alert alert-warning">
+        <strong>Alerta de stock:</strong> Los siguientes productos están por debajo del stock mínimo:
+        <ul>
+            <?php foreach ($productosBajoStock as $p): ?>
+                <li><?php echo htmlspecialchars($p['nombre']); ?> - Stock: <?php echo $p['stock_actual']; ?> / Mín: <?php echo $p['stock_minimo']; ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php endif; ?>
     
     <div class="dashboard-cards">
         <a href="index.php?controller=cliente&action=index" class="dashboard-card">
@@ -29,7 +39,3 @@
         </a>
     </div>
 </div>
-<?php
-$content = ob_get_clean();
-$titulo = 'Panel Principal';
-require __DIR__ . '/../layout.php';

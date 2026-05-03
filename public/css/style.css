@@ -126,14 +126,6 @@ body {
     letter-spacing: 0.03em;
 }
 
-.app-main {
-    flex: 1;
-    padding: 1.5rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-}
-
 .page-header {
     display: flex;
     justify-content: space-between;
@@ -449,4 +441,106 @@ body {
 .dashboard-card p {
     color: var(--text-light);
     font-size: 0.875rem;
+}
+
+.row-warning {
+    background: #fef3c7 !important;
+}
+
+.alert-warning {
+    background: #fffbeb;
+    color: #92400e;
+    border-left-color: var(--warning);
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-header {
+    background: var(--primary);
+    color: var(--white);
+    padding: 0 1.5rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-shrink: 0;
+}
+
+.app-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.app-sidebar {
+    width: 220px;
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 1rem 0;
+    flex-shrink: 0;
+    overflow-y: auto;
+    height: calc(100vh - 60px);
+    position: sticky;
+    top: 60px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0 0.5rem;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+}
+
+.sidebar-link:hover {
+    background: var(--neutral);
+    color: var(--primary);
+}
+
+.sidebar-link.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.sidebar-link svg {
+    flex-shrink: 0;
+}
+
+.sidebar-link-logout {
+    color: var(--error);
+    margin-top: auto;
+}
+
+.sidebar-link-logout:hover {
+    background: #fef2f2;
+    color: var(--error);
+}
+
+.app-main {
+    flex: 1;
+    padding: 1.5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    overflow-y: auto;
 }
