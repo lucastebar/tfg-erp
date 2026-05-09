@@ -1,7 +1,6 @@
 <?php
-echo "MYSQL_HOST: " . getenv('MYSQL_HOST') . "<br>";
-echo "MYSQL_USER: " . getenv('MYSQL_USER') . "<br>";
-echo "MYSQL_DATABASE: " . getenv('MYSQL_DATABASE') . "<br>";
+$email = 'admin@tfg.local';
+$password = 'tu_contraseña_aqui'; // La que usas en el login
 
 $pdo = new PDO(
     'mysql:host=' . getenv('MYSQL_HOST') . ';dbname=' . getenv('MYSQL_DATABASE'),
@@ -9,9 +8,25 @@ $pdo = new PDO(
     getenv('MYSQL_PASSWORD')
 );
 
-$result = $pdo->query('SELECT email, password FROM usuarios LIMIT 1');
-$user = $result->fetch(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
+$stmt->execute([$email]);
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-echo "<br>Usuario de prueba: " . $user['email'];
-echo "<br>Hash en BD: " . substr($user['password'], 0, 20) . "...";
+if (!$usuario) {
+    echo "Usuario no encontrado";
+    exit;
+}
+
+echo "Email: " . $usuario['email'] . "<br>";
+echo "Hash en BD: " . $usuario['password'] . "<br>";
+echo "Hash length: " . strlen($usuario['password']) . "<br>";
+echo "Password input: " . $password . "<br>";
+echo "Password length: " . strlen($password) . "<br>";
+
+$verify = password_verify($password, $usuario['password']);
+echo "password_verify result: " . ($verify ? 'TRUE' : 'FALSE') . "<br>";
+
+if (!$verify) {
+    echo "Intentando hash manual: " . password_hash($password, PASSWORD_BCRYPT) . "<br>";
+}
 ?>
