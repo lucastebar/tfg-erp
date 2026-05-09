@@ -1,7 +1,17 @@
 :8080 {
-	root * /app
+	root * /workspace
 	encode gzip
-	php_fastcgi localhost:9000
+	
+	# Servir archivos estáticos desde /public
+	@static {
+		path /css/* /js/*
+	}
+	handle @static {
+		file_server
+	}
+	
+	# Todo lo demás va a index.php
 	try_files {path} {path}/ /index.php?{query}
+	php_fastcgi localhost:9000
 	file_server
 }
