@@ -1,5 +1,5 @@
 :8080 {
-	root * /app/public
+	root * /app
 	encode gzip
 	php_fastcgi localhost:9000
 	try_files {path} {path}/ /index.php?{query}
