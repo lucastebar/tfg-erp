@@ -10,6 +10,6 @@
 	}
 
 	try_files {path} {path}/ /index.php?{query}
-	php_fastcgi localhost:9000
+	php_fastcgi 127.0.0.1:9000
 	file_server
 }
