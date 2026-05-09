@@ -1,5 +1,4 @@
 :8080 {
 	root * /workspace
-	encode gzip
 	file_server
 }
