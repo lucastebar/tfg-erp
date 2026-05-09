@@ -1,6 +1,6 @@
 <?php
 $email = 'admin@tfg.local';
-$password = 'tu_contraseña_aqui'; // La que usas en el login
+$password = 'P@ssword123..'; // La que usas en el login
 
 $pdo = new PDO(
     'mysql:host=' . getenv('MYSQL_HOST') . ';dbname=' . getenv('MYSQL_DATABASE'),
