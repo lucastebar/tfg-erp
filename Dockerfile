@@ -7,6 +7,6 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 COPY . /workspace
 WORKDIR /workspace
 
-EXPOSE 8080
+EXPOSE 80
 
 CMD caddy run --config /workspace/Caddyfile
