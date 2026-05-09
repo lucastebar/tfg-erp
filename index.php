@@ -33,12 +33,25 @@ if (!isset($allowedActions[$controller]) || !in_array($action, $allowedActions[$
     $action = 'index';
 }
 
+// Verificar si es solicitud API (Accept: application/json)
+$isApi = isset($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false;
+
 if ($controller !== 'auth' && !isset($_SESSION['usuario_id'])) {
-    ApiResponse::error401('No autenticado');
+    if ($isApi) {
+        ApiResponse::error401('No autenticado');
+    } else {
+        header('Location: index.php?controller=auth&action=index');
+        exit;
+    }
 }
 
 if (in_array($controller, ['usuario', 'log']) && ($_SESSION['rol'] ?? '') !== 'admin') {
-    ApiResponse::error401('No autorizado');
+    if ($isApi) {
+        ApiResponse::error401('No autorizado');
+    } else {
+        header('Location: index.php?controller=main&action=index');
+        exit;
+    }
 }
 
 $controllerFile = __DIR__ . '/app/controllers/' . ucfirst($controller) . 'Controller.php';

@@ -10,17 +10,26 @@ class LogController {
     }
 
     public function index() {
-        $fechaInicio = $_GET['fecha_inicio'] ?? null;
-        $fechaFin = $_GET['fecha_fin'] ?? null;
-        $usuarioId = $_GET['usuario_id'] ?? null;
+        try {
+            $fechaInicio = $_GET['fecha_inicio'] ?? null;
+            $fechaFin = $_GET['fecha_fin'] ?? null;
+            $usuarioId = $_GET['usuario_id'] ?? null;
 
-        if ($fechaInicio && $fechaFin) {
-            $logs = $this->modelo->obtenerPorFecha($fechaInicio . ' 00:00:00', $fechaFin . ' 23:59:59');
-        } else {
-            $logs = $this->modelo->obtenerTodos();
+            if ($fechaInicio && $fechaFin) {
+                $logs = $this->modelo->obtenerPorFecha($fechaInicio . ' 00:00:00', $fechaFin . ' 23:59:59');
+            } else {
+                $logs = $this->modelo->obtenerTodos();
+            }
+
+            if ($logs === false) {
+                throw new Exception("Error al obtener los logs");
+            }
+
+            $this->render('listado', ['logs' => $logs, 'fechaInicio' => $fechaInicio, 'fechaFin' => $fechaFin]);
+        } catch (Exception $e) {
+            error_log("LogController::index - " . $e->getMessage());
+            $this->render('listado', ['logs' => [], 'fechaInicio' => null, 'fechaFin' => null]);
         }
-
-        $this->render('listado', ['logs' => $logs, 'fechaInicio' => $fechaInicio, 'fechaFin' => $fechaFin]);
     }
 
     private function render($vista, $data = []) {
