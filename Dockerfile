@@ -10,13 +10,14 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 COPY . /workspace
 WORKDIR /workspace
 
-# Crear directorio para supervisor
+# Copiar config de PHP-FPM
+COPY php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+
 RUN mkdir -p /var/log/supervisor
 
-# Crear config de supervisor
 RUN cat > /etc/supervisor/conf.d/app.conf << 'EOF'
 [program:php-fpm]
-command=php-fpm
+command=php-fpm -F
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/supervisor/php-fpm.err.log
