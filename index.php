@@ -2,6 +2,10 @@
 
 session_start();
 
+// Detectar si está en Railway (PORT está definida por Railway)
+$isRailway = getenv('PORT') !== false && getenv('PORT') !== '';
+$basePath = $isRailway ? '' : '/tarde/tfg-erp';
+
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/app/core/ErrorHandler.php';
 require_once __DIR__ . '/app/core/ApiResponse.php';
@@ -40,7 +44,7 @@ if ($controller !== 'auth' && !isset($_SESSION['usuario_id'])) {
     if ($isApi) {
         ApiResponse::error401('No autenticado');
     } else {
-        header('Location: index.php?controller=auth&action=index');
+        header('Location: ' . $basePath . '/index.php?controller=auth&action=index');
         exit;
     }
 }
@@ -49,7 +53,7 @@ if (in_array($controller, ['usuario', 'log']) && ($_SESSION['rol'] ?? '') !== 'a
     if ($isApi) {
         ApiResponse::error401('No autorizado');
     } else {
-        header('Location: index.php?controller=main&action=index');
+        header('Location: ' . $basePath . '/index.php?controller=main&action=index');
         exit;
     }
 }

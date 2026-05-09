@@ -1,6 +1,7 @@
+<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
 <div class="page-header">
     <h1>Gestión de Usuarios</h1>
-    <a href="index.php?controller=usuario&action=nuevo" class="btn btn-primary">
+    <a href="<?= $basePath ?>/index.php?controller=usuario&action=nuevo" class="btn btn-primary">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
         Nuevo Usuario
     </a>
@@ -44,11 +45,11 @@
                         </span>
                     </td>
                     <td class="actions">
-                        <a href="index.php?controller=usuario&action=editar&id=<?= $usuario['id'] ?>" class="btn btn-sm btn-secondary">Editar</a>
+                        <a href="<?= $basePath ?>/index.php?controller=usuario&action=editar&id=<?= $usuario['id'] ?>" class="btn btn-sm btn-secondary">Editar</a>
                         <?php if ($usuario['activo']): ?>
-                            <a href="index.php?controller=usuario&action=eliminar&id=<?= $usuario['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Desactivar este usuario?')">Desactivar</a>
+                            <a href="<?= $basePath ?>/index.php?controller=usuario&action=eliminar&id=<?= $usuario['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Desactivar este usuario?')">Desactivar</a>
                         <?php else: ?>
-                            <a href="index.php?controller=usuario&action=activar&id=<?= $usuario['id'] ?>" class="btn btn-sm btn-primary" onclick="return confirm('¿Activar este usuario?')">Activar</a>
+                            <a href="<?= $basePath ?>/index.php?controller=usuario&action=activar&id=<?= $usuario['id'] ?>" class="btn btn-sm btn-primary" onclick="return confirm('¿Activar este usuario?')">Activar</a>
                         <?php endif; ?>
                     </td>
                 </tr>

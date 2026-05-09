@@ -1,6 +1,7 @@
+<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
 <div class="page-header">
     <h1>Gestión de Clientes</h1>
-    <a href="index.php?controller=cliente&action=nuevo" class="btn btn-primary">
+    <a href="<?= $basePath ?>/index.php?controller=cliente&action=nuevo" class="btn btn-primary">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
         Nuevo Cliente
     </a>
@@ -14,13 +15,13 @@
 <?php endif; ?>
 
 <div class="search-box">
-    <form method="get" action="index.php">
+    <form method="get" action="<?= $basePath ?>/index.php">
         <input type="hidden" name="controller" value="cliente">
         <input type="hidden" name="action" value="index">
         <input type="text" name="busqueda" placeholder="Buscar por Razón Social, NIF o Email..." value="<?= htmlspecialchars($busqueda) ?>">
         <button type="submit" class="btn btn-primary">Buscar</button>
         <?php if ($busqueda): ?>
-            <a href="index.php?controller=cliente&action=index" class="btn btn-secondary">Limpiar</a>
+            <a href="<?= $basePath ?>/index.php?controller=cliente&action=index" class="btn btn-secondary">Limpiar</a>
         <?php endif; ?>
     </form>
 </div>
@@ -50,8 +51,8 @@
                     <td><?= htmlspecialchars($cliente['telefono'] ?? '-') ?></td>
                     <td><?= htmlspecialchars($cliente['ciudad'] ?? '-') ?></td>
                     <td class="actions">
-                        <a href="index.php?controller=cliente&action=editar&id=<?= $cliente['id'] ?>" class="btn btn-sm btn-secondary">Editar</a>
-                        <a href="index.php?controller=cliente&action=eliminar&id=<?= $cliente['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">Eliminar</a>
+                        <a href="<?= $basePath ?>/index.php?controller=cliente&action=editar&id=<?= $cliente['id'] ?>" class="btn btn-sm btn-secondary">Editar</a>
+                        <a href="<?= $basePath ?>/index.php?controller=cliente&action=eliminar&id=<?= $cliente['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">Eliminar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

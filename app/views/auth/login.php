@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - TFG ERP</title>
-    <link rel="stylesheet" href="/tarde/tfg-erp/public/css/style.css">
+    <?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
+    <link rel="stylesheet" href="<?= $basePath ?>/public/css/style.css">
 </head>
 <body class="login-page">
+    <?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
     <div class="login-container">
         <div class="login-box">
             <h1>TFG ERP</h1>
@@ -19,7 +21,7 @@
                 <?php unset($_SESSION['mensaje'], $_SESSION['tipo_mensaje']); ?>
             <?php endif; ?>
 
-            <form method="post" action="index.php?controller=auth&action=login">
+            <form method="post" action="<?= $basePath ?>/index.php?controller=auth&action=login">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>

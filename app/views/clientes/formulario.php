@@ -1,3 +1,4 @@
+<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
 <div class="page-header">
     <h1><?= $accion === 'nuevo' ? 'Nuevo Cliente' : 'Editar Cliente' ?></h1>
 </div>
@@ -9,7 +10,7 @@
     <?php unset($_SESSION['mensaje'], $_SESSION['tipo_mensaje']); ?>
 <?php endif; ?>
 
-<form method="post" action="index.php?controller=cliente&action=<?= $accion === 'nuevo' ? 'guardar' : 'actualizar' ?>" class="form">
+<form method="post" action="<?= $basePath ?>/index.php?controller=cliente&action=<?= $accion === 'nuevo' ? 'guardar' : 'actualizar' ?>" class="form">
     <?php if ($accion === 'editar'): ?>
         <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
     <?php endif; ?>
@@ -55,6 +56,6 @@
 
     <div class="form-actions">
         <button type="submit" class="btn btn-primary"><?= $accion === 'nuevo' ? 'Crear Cliente' : 'Guardar Cambios' ?></button>
-        <a href="index.php?controller=cliente&action=index" class="btn">Cancelar</a>
+        <a href="<?= $basePath ?>/index.php?controller=cliente&action=index" class="btn">Cancelar</a>
     </div>
 </form>

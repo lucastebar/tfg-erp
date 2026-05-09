@@ -1,7 +1,8 @@
+<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
 <div class="page-header">
     <h1>Factura <?= htmlspecialchars($factura['numero_factura']) ?></h1>
     <div>
-        <a href="index.php?controller=factura&action=index" class="btn">Volver</a>
+        <a href="<?= $basePath ?>/index.php?controller=factura&action=index" class="btn">Volver</a>
         <a href="#imprimir" class="btn btn-primary" onclick="window.print()">Imprimir / PDF</a>
     </div>
 </div>
@@ -80,8 +81,8 @@
 
     <?php if ($factura['estado'] === 'pendiente'): ?>
     <div class="factura-acciones">
-        <a href="index.php?controller=factura&action=marcarPagada&id=<?= $factura['id'] ?>" class="btn btn-primary" onclick="return confirm('¿Marcar como pagada?')">Marcar como Pagada</a>
-        <a href="index.php?controller=factura&action=cancelar&id=<?= $factura['id'] ?>" class="btn btn-danger" onclick="return confirm('¿Cancelar factura? Se devolverá el stock.')">Cancelar Factura</a>
+        <a href="<?= $basePath ?>/index.php?controller=factura&action=marcarPagada&id=<?= $factura['id'] ?>" class="btn btn-primary" onclick="return confirm('¿Marcar como pagada?')">Marcar como Pagada</a>
+        <a href="<?= $basePath ?>/index.php?controller=factura&action=cancelar&id=<?= $factura['id'] ?>" class="btn btn-danger" onclick="return confirm('¿Cancelar factura? Se devolverá el stock.')">Cancelar Factura</a>
     </div>
     <?php endif; ?>
 </div>

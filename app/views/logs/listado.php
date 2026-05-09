@@ -1,3 +1,4 @@
+<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
 <div class="page-header">
     <h1>Logs de Auditoría</h1>
 </div>
@@ -10,13 +11,13 @@
 <?php endif; ?>
 
 <div class="search-box">
-    <form method="get" action="index.php">
+    <form method="get" action="<?= $basePath ?>/index.php">
         <input type="hidden" name="controller" value="log">
         <input type="hidden" name="action" value="index">
         <input type="date" name="fecha_inicio" value="<?= htmlspecialchars($fechaInicio) ?>" placeholder="Fecha inicio">
         <input type="date" name="fecha_fin" value="<?= htmlspecialchars($fechaFin) ?>" placeholder="Fecha fin">
         <button type="submit" class="btn btn-primary">Filtrar</button>
-        <a href="index.php?controller=log&action=index" class="btn btn-secondary">Limpiar</a>
+        <a href="<?= $basePath ?>/index.php?controller=log&action=index" class="btn btn-secondary">Limpiar</a>
     </form>
 </div>
 

@@ -1,3 +1,4 @@
+<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
 <div class="page-header">
     <h1>Nueva Factura</h1>
 </div>
@@ -9,7 +10,7 @@
     <?php unset($_SESSION['mensaje'], $_SESSION['tipo_mensaje']); ?>
 <?php endif; ?>
 
-<form method="post" action="index.php?controller=factura&action=crear" class="form" id="form-factura">
+<form method="post" action="<?= $basePath ?>/index.php?controller=factura&action=crear" class="form" id="form-factura">
     <div class="form-group">
         <label for="cliente_id">Cliente *</label>
         <select id="cliente_id" name="cliente_id" required>
@@ -61,7 +62,7 @@
 
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Emitir Factura</button>
-        <a href="index.php?controller=factura&action=index" class="btn">Cancelar</a>
+        <a href="<?= $basePath ?>/index.php?controller=factura&action=index" class="btn">Cancelar</a>
     </div>
 </form>
 
