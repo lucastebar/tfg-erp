@@ -9,4 +9,4 @@ WORKDIR /workspace
 
 EXPOSE 80
 
-CMD caddy run --config /workspace/Caddyfile
+CMD sh -c "php-fpm -D && sleep 1 && caddy run --config /workspace/Caddyfile"
