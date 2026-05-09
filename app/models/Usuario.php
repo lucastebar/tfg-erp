@@ -105,6 +105,31 @@ class Usuario {
         return $stmt->execute([$hash, $id]);
     }
 
+    public static function validarPassword($password) {
+        $errores = [];
+        
+        if (strlen($password) < 8) {
+            $errores[] = 'La contraseña debe tener al menos 8 caracteres';
+        }
+        
+        $hasUpper = preg_match('/[A-Z]/', $password);
+        $hasLower = preg_match('/[a-z]/', $password);
+        $hasNumber = preg_match('/[0-9]/', $password);
+        $hasSpecial = preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password);
+        
+        $count = 0;
+        if ($hasUpper) $count++;
+        if ($hasLower) $count++;
+        if ($hasNumber) $count++;
+        if ($hasSpecial) $count++;
+        
+        if ($count < 3) {
+            $errores[] = 'La contraseña debe cumplir al menos 3 de estas 4 reglas: mayúscula, minúscula, número y carácter especial';
+        }
+        
+        return $errores;
+    }
+
     public function sanitize($data) {
         return [
             'nombre' => htmlspecialchars(trim($data['nombre'])), 

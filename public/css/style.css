@@ -31,7 +31,59 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 380px;
+    padding: 1rem;
+}
+
+.login-box {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.login-box h1 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-size: 0.9375rem;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-header {
+    background: var(--primary);
+    color: var(--white);
+    padding: 0 1.5rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.app-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
 }
 
 .login-container {
@@ -484,19 +536,18 @@ body {
     width: 220px;
     background: var(--white);
     border-right: 1px solid var(--border);
-    padding: 1rem 0;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
-    height: calc(100vh - 60px);
-    position: sticky;
-    top: 60px;
 }
 
 .sidebar-nav {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    padding: 0 0.5rem;
+    padding: 0.5rem;
+    flex: 1;
 }
 
 .sidebar-link {
@@ -543,4 +594,37 @@ body {
     margin: 0 auto;
     width: 100%;
     overflow-y: auto;
+}
+
+.sidebar-section {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.sidebar-section-title {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-light);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 0.5rem;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.app-footer {
+    background: var(--primary);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    flex-shrink: 0;
 }

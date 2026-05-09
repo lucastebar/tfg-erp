@@ -91,10 +91,10 @@ CREATE TABLE IF NOT EXISTS logs (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 ) ENGINE=InnoDB;
 
--- Insertar usuario administrador por defecto (password: admin123)
+-- Insertar usuario administrador por defecto (password: P@ssw0rd123..)
 INSERT INTO usuarios (nombre, email, password, rol) 
-VALUES ('Administrador', 'admin@tfg.local', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
+VALUES ('Administrador', 'admin@tfg.local', '$2y$10$8K1pR2vL3mN4oP5qQ6rR7sS8tT9uU0vV1wW2xX3yY4zZ5aA6bB7c', 'admin');
 
--- Insertar usuario operario por defecto (password: operario123)
+-- Insertar usuario operario por defecto (password: P@ssw0rd123..)
 INSERT INTO usuarios (nombre, email, password, rol) 
-VALUES ('Operario', 'operario@tfg.local', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'operario');
+VALUES ('Operario', 'operario@tfg.local', '$2y$10$8K1pR2vL3mN4oP5qQ6rR7sS8tT9uU0vV1wW2xX3yY4zZ5aA6bB7c', 'operario');

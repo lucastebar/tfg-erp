@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../models/Log.php';
+
 class UsuarioController {
     private $modelo;
     private $viewPath;
@@ -53,6 +55,7 @@ class UsuarioController {
         }
 
         if ($this->modelo->guardar($data)) {
+            Log::guardar($_SESSION['usuario_id'], 'Crear usuario', 'usuarios', null, 'Email: ' . $data['email']);
             $_SESSION['mensaje'] = 'Usuario creado correctamente';
             $_SESSION['tipo_mensaje'] = 'success';
             $this->redirigir('index');
@@ -92,7 +95,8 @@ class UsuarioController {
             return;
         }
 
-        if ($this->modelo->actualizar($id, $data)) {
+if ($this->modelo->actualizar($id, $data)) {
+            Log::guardar($_SESSION['usuario_id'], 'Actualizar usuario', 'usuarios', $id, 'Email: ' . $data['email']);
             $_SESSION['mensaje'] = 'Usuario actualizado correctamente';
             $_SESSION['tipo_mensaje'] = 'success';
             $this->redirigir('index');
@@ -104,7 +108,9 @@ class UsuarioController {
     }
 
     public function eliminar($id) {
+        $usuario = $this->modelo->obtenerPorId($id);
         if ($this->modelo->eliminar($id)) {
+            Log::guardar($_SESSION['usuario_id'], 'Desactivar usuario', 'usuarios', $id, 'Usuario: ' . ($usuario['email'] ?? ''));
             $_SESSION['mensaje'] = 'Usuario eliminado correctamente';
             $_SESSION['tipo_mensaje'] = 'success';
         } else {
@@ -115,7 +121,9 @@ class UsuarioController {
     }
 
     public function activar($id) {
+        $usuario = $this->modelo->obtenerPorId($id);
         if ($this->modelo->activar($id)) {
+            Log::guardar($_SESSION['usuario_id'], 'Activar usuario', 'usuarios', $id, 'Usuario: ' . ($usuario['email'] ?? ''));
             $_SESSION['mensaje'] = 'Usuario activado correctamente';
             $_SESSION['tipo_mensaje'] = 'success';
         } else {
@@ -139,6 +147,11 @@ class UsuarioController {
         }
         if (!in_array($data['rol'], ['admin', 'operario'])) {
             $errores[] = 'El rol debe ser admin u operario';
+        }
+
+        if (!empty($data['password'])) {
+            $passwordErrors = Usuario::validarPassword($data['password']);
+            $errores = array_merge($errores, $passwordErrors);
         }
 
         return $errores;
