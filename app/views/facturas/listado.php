@@ -50,14 +50,15 @@
                     <td><?= htmlspecialchars($factura['numero_factura']) ?></td>
                     <td><?= htmlspecialchars($factura['razon_social']) ?></td>
                     <td><?= date('d/m/Y', strtotime($factura['fecha'])) ?></td>
-                    <td><?= number_format($factura['base_imponible'], 2, ',', '.') ?> €</td>
-                    <td><?= number_format($factura['iva'], 2, ',', '.') ?> €</td>
-                    <td><?= number_format($factura['total'], 2, ',', '.') ?> €</td>
+                    <td><?= number_format($factura['base_imponible'], 2, ',', '.') ?> EUR</td>
+                    <td><?= number_format($factura['iva'], 2, ',', '.') ?> EUR</td>
+                    <td><?= number_format($factura['total'], 2, ',', '.') ?> EUR</td>
                     <td>
                         <span class="badge badge-<?= $factura['estado'] ?>"><?= ucfirst($factura['estado']) ?></span>
                     </td>
                     <td class="actions">
                         <a href="<?= $basePath ?>/index.php?controller=factura&action=ver&id=<?= $factura['id'] ?>" class="btn btn-sm btn-secondary">Ver</a>
+                        <a href="<?= $basePath ?>/index.php?controller=factura&action=exportPdf&id=<?= $factura['id'] ?>" class="btn btn-sm btn-primary" target="_blank">PDF</a>
                         <?php if ($factura['estado'] === 'pendiente'): ?>
                             <a href="<?= $basePath ?>/index.php?controller=factura&action=marcarPagada&id=<?= $factura['id'] ?>" class="btn btn-sm btn-primary" onclick="return confirm('¿Marcar como pagada?')">Pagar</a>
                         <?php endif; ?>

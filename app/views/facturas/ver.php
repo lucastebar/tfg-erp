@@ -1,9 +1,21 @@
-<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
+<?php 
+$basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp';
+$empresa = [
+    'nombre' => 'Mi Empresa',
+    'cif' => 'A12345678',
+    'direccion' => '',
+    'cp' => '',
+    'ciudad' => '',
+    'provincia' => '',
+    'telefono' => '',
+    'email' => ''
+];
+?>
 <div class="page-header">
     <h1>Factura <?= htmlspecialchars($factura['numero_factura']) ?></h1>
     <div>
         <a href="<?= $basePath ?>/index.php?controller=factura&action=index" class="btn">Volver</a>
-        <a href="#imprimir" class="btn btn-primary" onclick="window.print()">Imprimir / PDF</a>
+        <a href="<?= $basePath ?>/index.php?controller=factura&action=exportPdf&id=<?= $factura['id'] ?>" class="btn btn-primary" target="_blank">Descargar PDF</a>
     </div>
 </div>
 
@@ -17,9 +29,10 @@
 <div class="factura-detalle">
     <div class="factura-header">
         <div class="empresa">
-            <h2>TFG ERP</h2>
-            <p>CIF: X12345678</p>
-            <p>Dirección de la Empresa</p>
+            <h2><?= htmlspecialchars($empresa['nombre']) ?></h2>
+            <p>CIF: <?= htmlspecialchars($empresa['cif']) ?></p>
+            <p><?= htmlspecialchars($empresa['direccion']) ?></p>
+            <p><?= htmlspecialchars($empresa['cp'] . ' ' . $empresa['ciudad']) ?></p>
         </div>
         <div class="cliente">
             <h3>Cliente</h3>
@@ -51,8 +64,8 @@
                     <td><?= htmlspecialchars($detalle['codigo']) ?></td>
                     <td><?= htmlspecialchars($detalle['nombre']) ?></td>
                     <td><?= $detalle['cantidad'] ?></td>
-                    <td><?= number_format($detalle['precio_unitario'], 2, ',', '.') ?> €</td>
-                    <td><?= number_format($detalle['cantidad'] * $detalle['precio_unitario'], 2, ',', '.') ?> €</td>
+                    <td><?= number_format($detalle['precio_unitario'], 2, ',', '.') ?> EUR</td>
+                    <td><?= number_format($detalle['cantidad'] * $detalle['precio_unitario'], 2, ',', '.') ?> EUR</td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -61,21 +74,21 @@
     <div class="totales">
         <div class="total-line">
             <span>Base Imponible:</span>
-            <span><?= number_format($factura['base_imponible'], 2, ',', '.') ?> €</span>
+            <span><?= number_format($factura['base_imponible'], 2, ',', '.') ?> EUR</span>
         </div>
         <div class="total-line">
             <span>IVA (21%):</span>
-            <span><?= number_format($factura['iva'], 2, ',', '.') ?> €</span>
+            <span><?= number_format($factura['iva'], 2, ',', '.') ?> EUR</span>
         </div>
         <?php if ($factura['descuento'] > 0): ?>
         <div class="total-line">
             <span>Descuento (<?= $factura['descuento'] ?>%):</span>
-            <span>-<?= number_format($factura['base_imponible'] * ($factura['descuento'] / 100), 2, ',', '.') ?> €</span>
+            <span>-<?= number_format($factura['base_imponible'] * ($factura['descuento'] / 100), 2, ',', '.') ?> EUR</span>
         </div>
         <?php endif; ?>
         <div class="total-line total-final">
             <span>Total:</span>
-            <span><?= number_format($factura['total'], 2, ',', '.') ?> €</span>
+            <span><?= number_format($factura['total'], 2, ',', '.') ?> EUR</span>
         </div>
     </div>
 

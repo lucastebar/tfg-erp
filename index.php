@@ -24,7 +24,7 @@ $allowedActions = [
     'cliente' => ['index', 'nuevo', 'editar', 'guardar', 'actualizar', 'eliminar'],
     'main' => ['index'],
     'producto' => ['index', 'nuevo', 'editar', 'guardar', 'actualizar', 'eliminar', 'ajustar'],
-    'factura' => ['index', 'nuevo', 'crear', 'ver', 'marcarPagada', 'marcarPendiente', 'cancelar'],
+    'factura' => ['index', 'nuevo', 'crear', 'ver', 'marcarPagada', 'marcarPendiente', 'cancelar', 'exportPdf'],
     'usuario' => ['index', 'nuevo', 'editar', 'guardar', 'actualizar', 'eliminar', 'activar'],
     'log' => ['index']
 ];

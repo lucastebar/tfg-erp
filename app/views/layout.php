@@ -10,6 +10,9 @@
 <body>
     <div class="app-container">
         <header class="app-header">
+            <button type="button" class="sidebar-toggle" aria-label="Menú" onclick="document.querySelector('.app-body').classList.toggle('sidebar-collapsed')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
             <div class="header-logo">TFG ERP</div>
             <div class="header-user">
                 <span><?= htmlspecialchars($_SESSION['usuario_nombre'] ?? '') ?></span>
@@ -69,5 +72,15 @@
             <span>&copy; <?= date('Y') ?></span>
         </footer>
     </div>
+    
+    <script>
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768 && 
+                !e.target.closest('.app-sidebar') && 
+                !e.target.closest('.sidebar-toggle')) {
+                document.querySelector('.app-body').classList.remove('sidebar-collapsed');
+            }
+        });
+    </script>
 </body>
 </html>

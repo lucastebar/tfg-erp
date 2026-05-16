@@ -75,9 +75,16 @@ body {
     height: 60px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-shrink: 0;
+}
+
+.header-logo {
+    flex: 1;
+}
+
+.header-user {
+    margin-left: auto;
 }
 
 .app-body {
@@ -627,4 +634,133 @@ body {
     justify-content: space-between;
     font-size: 0.75rem;
     flex-shrink: 0;
+}
+
+.sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+    
+    .app-body {
+        position: relative;
+    }
+    
+    .app-sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 100%;
+        z-index: 100;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .app-body.sidebar-collapsed .app-sidebar {
+        transform: translateX(0);
+    }
+    
+    .app-body.sidebar-collapsed::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 50;
+    }
+    
+    .app-main {
+        width: 100%;
+        padding: 1rem;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .data-table {
+        font-size: 0.75rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 0.5rem 0.25rem;
+    }
+    
+    .data-table .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .data-table .btn-sm {
+        font-size: 0.625rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .btn {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+        font-size: 0.875rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+    }
+    
+    .search-box form {
+        flex-direction: column;
+    }
+    
+    .search-box input {
+        width: 100%;
+    }
+    
+    .search-box .btn {
+        width: 100%;
+    }
+    
+    .empty-state {
+        padding: 2rem 1rem;
+    }
+    
+    .login-container {
+        padding: 0.5rem;
+    }
+    
+    .login-box {
+        padding: 1.5rem 1rem;
+    }
+    
+    .header-logo {
+        font-size: 1rem;
+    }
 }

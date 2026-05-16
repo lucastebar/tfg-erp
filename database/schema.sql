@@ -91,6 +91,29 @@ CREATE TABLE IF NOT EXISTS logs (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 ) ENGINE=InnoDB;
 
+-- Tabla de configuración de empresa
+CREATE TABLE IF NOT EXISTS configuracion_empresa (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL DEFAULT 'Mi Empresa',
+    cif VARCHAR(20) NOT NULL DEFAULT 'A12345678',
+    direccion VARCHAR(255),
+    cp VARCHAR(10),
+    ciudad VARCHAR(100),
+    provincia VARCHAR(100),
+    telefono VARCHAR(20),
+    email VARCHAR(100),
+    web VARCHAR(150),
+    iva_por_defecto DECIMAL(5, 2) DEFAULT 21.00,
+    serie_facturas VARCHAR(5) DEFAULT 'A',
+    logo TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Insertar configuración por defecto
+INSERT INTO configuracion_empresa (nombre, cif, direccion, ciudad) 
+VALUES ('TFG ERP', 'X12345678', 'Dirección de la empresa', 'Ciudad');
+
 -- Insertar usuario administrador por defecto (password: P@ssw0rd123..)
 INSERT INTO usuarios (nombre, email, password, rol) 
 VALUES ('Administrador', 'admin@tfg.local', '$2y$10$8K1pR2vL3mN4oP5qQ6rR7sS8tT9uU0vV1wW2xX3yY4zZ5aA6bB7c', 'admin');
