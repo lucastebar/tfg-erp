@@ -1,5 +1,5 @@
 <?php 
-$basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp';
+$basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tfg-erp';
 $empresa = [
     'nombre' => 'Mi Empresa',
     'cif' => 'A12345678',

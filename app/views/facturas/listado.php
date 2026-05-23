@@ -1,4 +1,4 @@
-<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
+<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tfg-erp'; ?>
 <div class="page-header">
     <h1>Facturas</h1>
     <a href="<?= $basePath ?>/index.php?controller=factura&action=nuevo" class="btn btn-primary">

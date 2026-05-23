@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - TFG ERP</title>
-    <?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
+    <?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tfg-erp'; ?>
     <link rel="stylesheet" href="<?= $basePath ?>/public/css/style.css">
 </head>
 <body class="login-page">
-    <?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
+    <?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tfg-erp'; ?>
     <div class="login-container">
         <div class="login-box">
             <h1>TFG ERP</h1>

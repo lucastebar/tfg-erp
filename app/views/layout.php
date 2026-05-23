@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $titulo ?? 'TFG ERP' ?></title>
-    <?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
+    <?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tfg-erp'; ?>
     <link rel="stylesheet" href="<?= $basePath ?>/public/css/style.css">
 </head>
 <body>

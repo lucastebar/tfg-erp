@@ -116,8 +116,8 @@ VALUES ('TFG ERP', 'X12345678', 'Dirección de la empresa', 'Ciudad');
 
 -- Insertar usuario administrador por defecto (password: P@ssw0rd123..)
 INSERT INTO usuarios (nombre, email, password, rol) 
-VALUES ('Administrador', 'admin@tfg.local', '$2y$10$8K1pR2vL3mN4oP5qQ6rR7sS8tT9uU0vV1wW2xX3yY4zZ5aA6bB7c', 'admin');
+VALUES ('Administrador', 'admin@tfg.local', '$2y$10$VgB8TCoLp.1vFEumTY8fDe66sVsThlLsQz4lFuiR4CDQecxau7Jdm', 'admin');
 
 -- Insertar usuario operario por defecto (password: P@ssw0rd123..)
 INSERT INTO usuarios (nombre, email, password, rol) 
-VALUES ('Operario', 'operario@tfg.local', '$2y$10$8K1pR2vL3mN4oP5qQ6rR7sS8tT9uU0vV1wW2xX3yY4zZ5aA6bB7c', 'operario');
+VALUES ('Operario', 'operario@tfg.local', '$2y$10$VgB8TCoLp.1vFEumTY8fDe66sVsThlLsQz4lFuiR4CDQecxau7Jdm', 'operario');

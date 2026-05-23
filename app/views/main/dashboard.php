@@ -1,4 +1,4 @@
-<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
+<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tfg-erp'; ?>
 <div class="dashboard">
     <div class="welcome-section">
         <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></h1>

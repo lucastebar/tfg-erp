@@ -294,7 +294,7 @@ class FacturaController {
     }
 
     private function redirigir($accion) {
-        $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp';
+        $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tfg-erp';
         header('Location: ' . $basePath . '/index.php?controller=factura&action=' . $accion);
         exit;
     }

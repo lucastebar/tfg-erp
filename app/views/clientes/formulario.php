@@ -1,4 +1,4 @@
-<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tarde/tfg-erp'; ?>
+<?php $basePath = (getenv('PORT') !== false && getenv('PORT') !== '') ? '' : '/tfg-erp'; ?>
 <div class="page-header">
     <h1><?= $accion === 'nuevo' ? 'Nuevo Cliente' : 'Editar Cliente' ?></h1>
 </div>

@@ -4,7 +4,7 @@ session_start();
 
 // Detectar si está en Railway (PORT está definida por Railway)
 $isRailway = getenv('PORT') !== false && getenv('PORT') !== '';
-$basePath = $isRailway ? '' : '/tarde/tfg-erp';
+$basePath = $isRailway ? '' : '/tfg-erp';
 
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/app/core/ErrorHandler.php';
