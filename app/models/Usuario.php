@@ -139,4 +139,22 @@ class Usuario {
             'activo' => isset($data['activo']) ? 1 : 0
         ];
     }
+
+    public function seedSiVacio() {
+    try {
+        $stmt = $this->pdo->query("SELECT COUNT(*) FROM usuarios");
+        if ($stmt->fetchColumn() == 0) {
+            $adminHash = password_hash('P@ssw0rd123..', PASSWORD_BCRYPT);
+            $operarioHash = password_hash('P@ssw0rd123..', PASSWORD_BCRYPT);
+
+            $stmt = $this->pdo->prepare("INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, 'admin')");
+            $stmt->execute(['Administrador', 'admin@tfg.local', $adminHash]);
+
+            $stmt = $this->pdo->prepare("INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, 'operario')");
+            $stmt->execute(['Operario', 'operario@tfg.local', $operarioHash]);
+        }
+    } catch (\PDOException $e) {
+        error_log("Error en seed inicial: " . $e->getMessage());
+    }
+}
 }

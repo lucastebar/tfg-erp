@@ -8,6 +8,7 @@ class AuthController {
     }
 
     public function index() {
+        $this->modelo->seedSiVacio();
         if ($_SESSION['usuario_id'] ?? '') {
             header('Location: index.php?controller=main&action=index');
             exit;
